@@ -18,7 +18,7 @@ export default function RootLayout({
       <Topbar />
       <div className="flex rounded-t-3xl mt-16 bg-primary">
         <Sidebar />
-        <div className="ml-64 flex-1 h-screen">
+        <div className="ml-64 flex-1 h-full">
           {children}
         </div>
       </div>

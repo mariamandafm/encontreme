@@ -32,7 +32,7 @@ const Sidebar = () => {
           <FiCornerDownRight className="text-xl" />
           Coleções
         </Link>
-        <Link href="#" className={`flex items-center gap-2 p-2 ${isActive('#') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
+        <Link href="/dashboard/minha-loja" className={`flex items-center gap-2 p-2 ${isActive('/dashboard/minha-loja') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
           <FiShoppingBag className="text-xl" />
           Minha Loja
         </Link>
