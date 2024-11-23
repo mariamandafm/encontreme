@@ -1,17 +1,62 @@
-import React from 'react';
+"use client";
+
+import React from "react";
+import Link from "next/link";
+import { usePathname } from 'next/navigation';
+
+import {
+  FiHome,
+  FiShoppingCart,
+  FiCornerDownRight,
+  FiShoppingBag,
+  FiDollarSign,
+  FiSettings,
+} from "react-icons/fi";
 
 const Sidebar = () => {
-    return (
-        <aside className="fixed top-16 left-0 h-screen w-64 flex flex-col bg-white rounded-t-3xl p-4">
-            <a>Página Inicial</a>
-            <a>Produtos</a>
-            <a>Coleções</a>
-            <a>Minha Loja</a>
-            <a>Editar Loja</a>
-            <a>Modelos</a>
-            <a>Meu Plano</a>
-        </aside>
-    );
+  const pathname = usePathname();
+  const isActive = (path: string) => pathname === path;
+
+  return (
+    <aside className="font-logo text-lg fixed top-16 left-0 h-screen w-64 bg-white flex flex-col rounded-t-3xl p-5 justify-between">
+      <div className="flex flex-col gap-1 ">
+        <Link href="/dashboard" className={`flex items-center gap-2 p-2 ${isActive('/dashboard') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
+          <FiHome className="text-xl" />
+          Página Inicial
+        </Link>
+        <Link href="/dashboard/produtos" className={`flex items-center gap-2 p-2 ${isActive('/dashboard/produtos') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
+          <FiShoppingCart className="text-xl" />
+          Produtos
+        </Link>
+        <Link href="#" className={`text-gray-500 flex items-center gap-2 p-2 ${isActive('#') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
+          <FiCornerDownRight className="text-xl" />
+          Coleções
+        </Link>
+        <Link href="#" className={`flex items-center gap-2 p-2 ${isActive('#') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
+          <FiShoppingBag className="text-xl" />
+          Minha Loja
+        </Link>
+        <Link href="#" className={`text-gray-500 flex items-center gap-2 p-2 ${isActive('#') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
+          <FiCornerDownRight className="text-xl" />
+          Editar Loja
+        </Link>
+        <Link href="#" className={`text-gray-500 flex items-center gap-2 p-2 ${isActive('#') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
+          <FiCornerDownRight className="text-xl" />
+          Modelos
+        </Link>
+        <Link href="#" className={`flex items-center gap-2 p-2 ${isActive('#') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
+          <FiDollarSign className="text-xl" />
+          Meu Plano
+        </Link>
+      </div>
+      <div>
+        <Link href="#" className={`flex items-center gap-2 p-2 ${isActive('#') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
+          <FiSettings className="text-xl" />
+          Configurações
+        </Link>
+      </div>
+    </aside>
+  );
 };
 
 export default Sidebar;
