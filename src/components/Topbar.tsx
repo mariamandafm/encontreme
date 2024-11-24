@@ -11,7 +11,7 @@ const Topbar = () => {
                 <span className="text-primaryBlue text-xs">✦</span>
             </div>
             <div className="flex items-center gap-3">
-                <span className="text-2xl">Username</span>
+                <span className="text-lg">Username</span>
                 <div className="rounded-full bg-white p-2">
                     <FiUser className='h-7 w-7 text-black' />
                 </div>

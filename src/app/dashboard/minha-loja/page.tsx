@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react';
 import { FiCopy, FiCheck } from "react-icons/fi";
 import Image from 'next/image'
 import Input from '../../../components/FormInput';
+import Select from '../../../components/SelectInput';
 
 const MinhaLoja = () => {
     const linkRef = useRef<HTMLInputElement>(null);
@@ -50,7 +51,7 @@ const MinhaLoja = () => {
                         <Input type="text" defaultValue="Minha Loja">Nome da Loja</Input>
                         <div className="mt-4">
                             <label className="font-medium">Link de Acesso</label>
-                            <div className="relative flex items-center mt-2 w-full h-11 bg-primary rounded-md border-0 p-3 text-gray-900 focus:ring-1 focus:ring-inset focus:ring-secondaryBlue">
+                            <div className="relative flex items-center mt-2 w-full h-11 bg-box rounded-md border-0 p-3 text-gray-900 focus:ring-1 focus:ring-inset focus:ring-secondaryBlue">
                                 <span className="text-gray-00 select-none">https://encontreme.com/</span>
                                 <input type="text" ref={linkRef} defaultValue="minhaloja" className="bg-transparent focus:ring-0 focus:outline-none" />
                                 <div
@@ -62,31 +63,24 @@ const MinhaLoja = () => {
 
                             </div>
                         </div>
+
                         <div className="mt-4">
-                            <label className="font-medium">WhatsApp</label>
-                            <input placeholder="+99(99)9999-9999" defaultValue="+55(84)99999-9999" type="text" className="mt-2 w-full h-11 bg-primary rounded-md border-0 p-3 text-gray-900 focus:ring-1 focus:ring-inset focus:ring-secondaryBlue" />
+                            <Input placeholder="+55 (11) 12345-6789" defaultValue="+55 (84) 99999-9999" type="text">WhatsApp</Input>
                         </div>
                     </div>
                 </div>
                 <div className="col-span-2 bg-white rounded-3xl p-7">
-                    <div>
-                        <label className="font-medium">Publicação</label>
-                        <div className="w-full mt-2">
-                            <select className="w-full h-11 bg-primary rounded-md border-0 p-3 text-gray-900 focus:ring-2 focus:ring-inset focus:ring-secondaryBlue">
-                                <option>Publicado</option>
-                                <option>Rascunho</option>
-                            </select>
-                        </div>
-                    </div>
+                    <Select title="Publicação">
+                        <option>Publicado</option>
+                        <option>Rascunho</option>
+                    </Select>
+
                     <div className="mt-4">
-                        <label className="font-medium">Tipo de Loja</label>
-                        <div className="w-full mt-2">
-                            <select className="w-full h-11 bg-primary rounded-md border-0 px-3 text-gray-900 focus:ring-2 focus:ring-inset focus:ring-secondaryBlue">
-                                <option>Venda de Produtos</option>
-                                <option>Prestação de Serviços</option>
-                                <option>Outro</option>
-                            </select>
-                        </div>
+                        <Select title="Tipo de Loja">
+                            <option>Venda de Produtos</option>
+                            <option>Prestação de Serviços</option>
+                            <option>Outro</option>
+                        </Select>
                     </div>
                 </div>
             </div>
