@@ -18,7 +18,7 @@ const Sidebar = () => {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <aside className="font-logo text-lg fixed top-16 left-0 h-screen w-64 bg-white flex flex-col rounded-t-3xl p-5 justify-between">
+    <aside className="font-logo text-lg fixed top-16 left-0 h-screen w-64 bg-white flex flex-col rounded-tl-3xl p-5 justify-between">
       <div className="flex flex-col gap-1 ">
         <Link href="/dashboard" className={`flex items-center gap-2 p-2 ${isActive('/dashboard') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
           <FiHome className="text-xl" />

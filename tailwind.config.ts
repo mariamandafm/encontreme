@@ -12,6 +12,7 @@ module.exports = {
         foreground: "var(--foreground)",
         primary: "var(--primary)",
         primaryBlue: "var(--primary-blue)",
+        box: "var(--box)",
       },
       fontFamily: {
         logo: ['var(--font-syne)'],

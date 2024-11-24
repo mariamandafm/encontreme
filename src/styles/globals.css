@@ -10,18 +10,15 @@
   --primary: #F0F0FC;
   --primary-blue: #89CBD0;
   --secondary-blue: #0C5E84;
+  --box: #F6F6F6;
 }
 
-/* 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
-
 body {
-  color: var(--foreground);
-  background: var(--background);
-  /* font-family: Arial, Helvetica, sans-serif; */
+  background-color: #F0F0Fc;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }

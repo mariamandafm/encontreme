@@ -16,9 +16,10 @@ export default function RootLayout({
   return (
     <div>
       <Topbar />
-      <div className="flex rounded-t-3xl mt-16 bg-primary">
-        <Sidebar />
-        <div className="ml-64 flex-1 h-full">
+      <div className="fixed w-full h-5 z-0 bg-black" />
+      <div className="flex mt-16 bg-primary">
+        <div className="ml-64 flex-1 h-full z-[1] rounded-tr-2xl bg-primary">
+          <Sidebar />
           {children}
         </div>
       </div>

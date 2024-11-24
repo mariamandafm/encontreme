@@ -3,6 +3,7 @@
 import React, { useRef, useState } from 'react';
 import { FiCopy, FiCheck } from "react-icons/fi";
 import Image from 'next/image'
+import Input from '../../../components/FormInput';
 
 const MinhaLoja = () => {
     const linkRef = useRef<HTMLInputElement>(null);
@@ -33,7 +34,7 @@ const MinhaLoja = () => {
                 <div className="col-span-3 flex flex-col gap-10">
                     <div className="bg-white rounded-3xl p-7">
                         <div className='relative w-full h-[200px] overflow-hidden rounded-md'>
-                            <Image 
+                            <Image
                                 src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg"
                                 alt="Preview do modelo"
                                 fill={true}
@@ -46,20 +47,17 @@ const MinhaLoja = () => {
                         </div>
                     </div>
                     <div className="bg-white rounded-3xl p-7">
-                        <div>
-                            <label className="font-medium">Nome da Loja</label>
-                            <input type="text" defaultValue="Minha Loja" className="mt-2 w-full h-11 bg-primary rounded-md border-0 p-3 text-gray-900 focus:ring-1 focus:ring-inset focus:ring-secondaryBlue" />
-                        </div>
+                        <Input type="text" defaultValue="Minha Loja">Nome da Loja</Input>
                         <div className="mt-4">
                             <label className="font-medium">Link de Acesso</label>
-                            <div className="relative flex items-center mt-2 w-full h-11 bg-primary rounded-md border-0 p-3 text-gray-900 focus:ring-1 focus:ring-inset focus:ring-secondaryBlue"> 
+                            <div className="relative flex items-center mt-2 w-full h-11 bg-primary rounded-md border-0 p-3 text-gray-900 focus:ring-1 focus:ring-inset focus:ring-secondaryBlue">
                                 <span className="text-gray-00 select-none">https://encontreme.com/</span>
                                 <input type="text" ref={linkRef} defaultValue="minhaloja" className="bg-transparent focus:ring-0 focus:outline-none" />
-                                <div 
+                                <div
                                     onClick={handleLinkCopy}
                                     className="absolute inset-y-0 right-3 flex items-center pointer-events-auto hover:text-secondaryBlue"
                                 >
-                                    {copied ? <FiCheck className="text-2xl  text-green-700"/> : <FiCopy className="text-2xl"/>}
+                                    {copied ? <FiCheck className="text-2xl  text-green-700" /> : <FiCopy className="text-2xl" />}
                                 </div>
 
                             </div>

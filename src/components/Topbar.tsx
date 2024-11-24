@@ -5,7 +5,7 @@ import { FiUser } from "react-icons/fi";
 
 const Topbar = () => {
     return (
-        <nav className="fixed top-0 left-0 w-full h-16 text-white bg-black z-20 flex items-center px-4 justify-between">
+        <nav className="fixed top-0 left-0 w-full h-16 text-white bg-black z-10 flex items-center px-4 justify-between">
             <div>
                 <span className="text-2xl">EncontreMe</span>
                 <span className="text-primaryBlue text-xs">✦</span>
