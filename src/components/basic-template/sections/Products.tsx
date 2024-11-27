@@ -1,63 +1,7 @@
 import React from 'react'
 import ProductCard from './ProductCard';
-
-export type CeramicProduct = {
-  name: string;
-  price: number; // Price in the desired currency, e.g., USD or BRL
-  description: string;
-  imageURL: string;
-};
-
-const ceramicProducts: CeramicProduct[] = [
-  {
-    name: "Vaso Rústico Terracota",
-    price: 120.0,
-    description: "Vaso artesanal em terracota, ideal para ambientes rústicos e jardins internos.",
-    imageURL: "www.svgrepo.com/show/508699/landscape-placeholder.svg",
-  },
-  {
-    name: "Vaso Minimalista Branco",
-    price: 85.5,
-    description: "Vaso de cerâmica com design minimalista e acabamento fosco, perfeito para decoração moderna.",
-    imageURL: "www.svgrepo.com/show/508699/landscape-placeholder.svg",
-  },
-  {
-    name: "Centro de Mesa Esmaltado",
-    price: 200.0,
-    description: "Peça única com acabamento esmaltado em tons azulados, ideal como centro de mesa.",
-    imageURL: "www.svgrepo.com/show/508699/landscape-placeholder.svg",
-  },
-  {
-    name: "Vaso Geométrico Cinza",
-    price: 95.0,
-    description: "Vaso com formato geométrico e acabamento texturizado, excelente para plantas suculentas.",
-    imageURL: "www.svgrepo.com/show/508699/landscape-placeholder.svg",
-  },
-  {
-    name: "Conjunto de Vasos Coloridos",
-    price: 180.0,
-    description: "Conjunto com três vasos de tamanhos diferentes, decorados à mão em cores vibrantes.",
-    imageURL: "www.svgrepo.com/show/508699/landscape-placeholder.svg",
-  },
-  {
-    name: "Vaso Boho em Cerâmica Natural",
-    price: 75.0,
-    description: "Vaso com padrão boho em cerâmica natural, perfeito para criar um ambiente aconchegante.",
-    imageURL: "www.svgrepo.com/show/508699/landscape-placeholder.svg",
-  },
-  {
-    name: "Vaso de Parede com Alça",
-    price: 110.0,
-    description: "Vaso suspenso com alça de couro, ideal para decorar paredes com plantas pendentes.",
-    imageURL: "www.svgrepo.com/show/508699/landscape-placeholder.svg",
-  },
-  {
-    name: "Vaso Pequeno com Detalhes Dourados",
-    price: 50.0,
-    description: "Pequeno vaso decorativo com detalhes dourados, ideal para flores de pequeno porte.",
-    imageURL: "www.svgrepo.com/show/508699/landscape-placeholder.svg",
-  },
-];
+import { ceramicProducts } from '@/data/products';
+import { useRouter } from 'next/router';
 
 const Products = () => {
   return (

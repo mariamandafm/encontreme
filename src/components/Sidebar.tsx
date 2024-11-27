@@ -46,7 +46,7 @@ const Sidebar = () => {
             <FiCornerDownRight className="text-xl" />
             Editar Loja
           </Link>
-          <Link href="#" className={`text-gray-500 flex items-center gap-2 p-2 ${isActive('#') ? 'bg-box  rounded-md' : ''} hover:bg-box p-2 rounded-md`}>
+          <Link href="/dashboard/minha-loja/modelos" className={`text-gray-500 flex items-center gap-2 p-2 ${isActive('/dashboard/minha-loja/modelos') ? 'bg-box  rounded-md' : ''} hover:bg-box p-2 rounded-md`}>
             <FiCornerDownRight className="text-xl" />
             Modelos
           </Link>
