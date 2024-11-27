@@ -64,7 +64,7 @@ const Sidebar = () => {
       </aside>
       }
     </div>
-    
+
   );
 };
 
