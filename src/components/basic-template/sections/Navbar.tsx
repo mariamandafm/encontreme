@@ -20,7 +20,7 @@ const Navbar = () => {
             <li><a href="#rodape">Contato</a></li>
           </ul>
         </div>
-        <Link href="#" className="rounded-full p-2 hover:bg-box text-2xl">
+        <Link href="/minhaloja/carrinho" className="rounded-full p-2 hover:bg-box text-2xl">
           <FiShoppingBag/>
         </Link>
       </div>

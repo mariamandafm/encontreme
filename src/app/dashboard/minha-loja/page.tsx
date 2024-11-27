@@ -5,6 +5,8 @@ import { FiCopy, FiCheck } from "react-icons/fi";
 import Image from 'next/image'
 import Input from '../../../components/FormInput';
 import Select from '../../../components/SelectInput';
+import Link from 'next/link';
+
 
 const MinhaLoja = () => {
     const linkRef = useRef<HTMLInputElement>(null);
@@ -27,7 +29,7 @@ const MinhaLoja = () => {
             <div className="flex justify-between pb-3">
                 <h1 className="text-2xl font-medium">Minha Loja</h1>
                 <div className='flex flex-row gap-4'>
-                    <button className="bg-white px-4 py-1 rounded-3xl hover:text-secondaryBlue">Ver</button>
+                    <Link href="/minhaloja"  className="bg-white px-4 py-1 rounded-3xl hover:text-secondaryBlue">Ver</Link>
                     <button className="bg-white px-4 py-1 rounded-3xl hover:text-secondaryBlue">Salvar Alterações</button>
                 </div>
             </div>

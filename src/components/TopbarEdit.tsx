@@ -4,6 +4,7 @@ import React from 'react';
 import "../styles/globals.css";
 import { useRouter } from 'next/navigation';
 import { FiArrowLeft } from "react-icons/fi";
+import Link from "next/link";
 
 const TopbarEdit = () => {
     const router = useRouter();
@@ -18,7 +19,7 @@ const TopbarEdit = () => {
                 <button onClick={handleBack} className="text-black bg-white px-5 py-1 flex items-center rounded-3xl gap-1 hover:bg-box"><FiArrowLeft />Voltar</button>
             </div>
             <div className="flex gap-2">
-            <button className="text-black bg-white px-5 py-1 flex items-center rounded-3xl gap-1 hover:bg-box">Ver</button>
+            <Link href="/minhaloja" className="text-black bg-white px-5 py-1 flex items-center rounded-3xl gap-1 hover:bg-box">Ver</Link>
             <button className="text-black bg-white px-5 py-1 flex items-center rounded-3xl gap-1 hover:bg-box">Salvar</button>
             </div>
         </nav>
