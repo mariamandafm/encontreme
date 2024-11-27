@@ -1,38 +1,37 @@
 "use client"
-import Image from 'next/image';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { FiChevronLeft, FiChevronRight, FiEdit } from 'react-icons/fi';
 
-const initialProdutos = [
-  { id: 1, nome: 'Espelhamento de Pintura', preco: 150.0 },
-  { id: 2, nome: 'Vitrificação', preco: 200.0 },
-  { id: 3, nome: 'Vitrificação', preco: 220.0 },
-  { id: 4, nome: 'Vitrificação', preco: 1200.0 },
-  { id: 5, nome: 'Vitrificação', preco: 30.0 },
-  { id: 6, nome: 'Vitrificação', preco: 2400.0 },
-  { id: 7, nome: 'Vitrificação', preco: 230.0 },
-  { id: 8, nome: 'Vitrificação', preco: 400.0 },
-  { id: 9, nome: 'Vitrificação', preco: 2100.0 },
-  { id: 10, nome: 'Vitrificação', preco: 600.0 },
-  { id: 11, nome: 'Vitrificação', preco: 100.0 },
-];
+const initialColecoes = [
+  { "id": 1, "nome": "Xícaras", "totalProdutos": 2 },
+  { "id": 2, "nome": "Mais Vendidos", "totalProdutos": 5 },
+  { "id": 3, "nome": "Cozinha", "totalProdutos": 10 },
+  { "id": 4, "nome": "Escritório", "totalProdutos": 7 },
+  { "id": 5, "nome": "Decoração", "totalProdutos": 12 },
+  { "id": 6, "nome": "Banheiro", "totalProdutos": 4 },
+  { "id": 7, "nome": "Quarto", "totalProdutos": 8 },
+  { "id": 8, "nome": "Sala", "totalProdutos": 6 },
+  { "id": 9, "nome": "Promoções", "totalProdutos": 3 },
+  { "id": 10, "nome": "Novidades", "totalProdutos": 9 },
+  { "id": 11, "nome": "BlackFriday", "totalProdutos": 9 }
+]
 
-export default function Produtos() {
-  const [produtos, setProdutos] = useState(initialProdutos);
+export default function Colecoes() {
+  const [colecoes, setColecoes] = useState(initialColecoes);
   const [selecionados, setSelecionados] = useState<number[]>([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
   const [showModal, setShowModal] = useState(false);
 
   const router = useRouter();
 
-  const produtosPorPagina = 10;
+  const colecoesPorPagina = 10;
 
-  const indiceInicial = (paginaAtual - 1) * produtosPorPagina;
-  const indiceFinal = indiceInicial + produtosPorPagina;
-  const produtosPagina = produtos.slice(indiceInicial, indiceFinal);
+  const indiceInicial = (paginaAtual - 1) * colecoesPorPagina;
+  const indiceFinal = indiceInicial + colecoesPorPagina;
+  const colecoesPagina = colecoes.slice(indiceInicial, indiceFinal);
 
-  const totalPaginas = Math.ceil(produtos.length / produtosPorPagina);
+  const totalPaginas = Math.ceil(colecoes.length / colecoesPorPagina);
 
   const mudarPagina = (novaPagina: number) => {
     if (novaPagina > 0 && novaPagina <= totalPaginas) {
@@ -49,7 +48,7 @@ export default function Produtos() {
   };
 
   const toggleSelecionarTodos = () => {
-    const idsPaginaAtual = produtosPagina.map((produto) => produto.id);
+    const idsPaginaAtual = colecoesPagina.map((colecao) => colecao.id);
     const todosSelecionados = idsPaginaAtual.every((id) => selecionados.includes(id));
 
     setSelecionados((prevSelecionados) =>
@@ -60,25 +59,24 @@ export default function Produtos() {
   };
 
   const removerSelecionados = () => {
-    setProdutos((prevProdutos) => prevProdutos.filter((produto) => !selecionados.includes(produto.id)));
-    setSelecionados([]); // Limpa a seleção
-    setShowModal(false); // Fecha o modal
+    setColecoes((prevColecoes) => prevColecoes.filter((colecao) => !selecionados.includes(colecao.id)));
+    setSelecionados([]);
+    setShowModal(false);
   };
 
-  const todosSelecionados = produtosPagina.every((produto) => selecionados.includes(produto.id));
+  const todosSelecionados = colecoesPagina.every((colecao) => selecionados.includes(colecao.id));
 
   return (
     <>
       <div className="flex justify-between mx-12 mt-12">
-        <h1 className="text-2xl font-medium">Produtos</h1>
+        <h1 className="text-2xl font-medium">Coleções</h1>
         <div className="flex flex-row gap-4">
-          <button onClick={() => router.push("/dashboard/produtos/novo")} className="bg-black px-6 py-1 rounded-3xl hover:bg-zinc-800 duration-75 transition-colors">
-            <p className="text-white">Novo Produto</p>
+          <button onClick={() => router.push("/dashboard/colecoes/novo")} className="bg-black px-6 py-1 rounded-3xl hover:bg-zinc-800 duration-75 transition-colors">
+            <p className="text-white">Nova Coleção</p>
           </button>
         </div>
       </div>
       <div className="flex bg-white mx-12 mt-7 mb-7 p-7 rounded-3xl h-full flex-col">
-        {/* Checkbox para selecionar/desmarcar todos */}
         <div className="flex items-center mb-4 justify-between">
           <div className="flex items-center">
             <input
@@ -87,7 +85,7 @@ export default function Produtos() {
               checked={todosSelecionados}
               onChange={toggleSelecionarTodos}
             />
-            <p className="ml-3">Selecionar Todos</p>
+            <p className="ml-3">Selecionar Todas</p>
           </div>
 
           {selecionados.length > 0 && (
@@ -96,18 +94,17 @@ export default function Produtos() {
               className="bg-box hover:bg-gray-200 rounded-full py-1 px-4"
             >
               <p className="text-red-900">
-                {selecionados.length > 1 ? 'Remover Produtos' : 'Remover Produto'}
+                {selecionados.length > 1 ? 'Remover Coleções' : 'Remover Coleção'}
               </p>
             </button>
           )}
         </div>
-        {produtosPagina.map((produto) => {
-          const preco = produto.preco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
-          const isSelecionado = selecionados.includes(produto.id);
+        {colecoesPagina.map((colecao) => {
+          const isSelecionado = selecionados.includes(colecao.id);
 
           return (
             <div
-              key={produto.id}
+              key={colecao.id}
               className={`w-full bg-box hover:bg-gray-100 mt-3 p-3 flex justify-between items-center rounded-xl cursor-pointer ${isSelecionado ? 'border border-black' : ''}`}
             >
               <div className="flex items-center">
@@ -115,26 +112,18 @@ export default function Produtos() {
                   className="w-5 h-5 border-gray-600 accent-black border-2"
                   type="checkbox"
                   checked={isSelecionado}
-                  onChange={() => toggleSelecionado(produto.id)}
+                  onChange={() => toggleSelecionado(colecao.id)}
                 />
-                <Image
-                  className="ml-4 h-10 w-10 object-fill rounded-lg"
-                  src="/produto_exemplo01.png"
-                  alt="Imagem de Vitrificação"
-                  height={80}
-                  width={80}
-                />
-                <p className="ml-4">{produto.nome}</p>
+                <p className="ml-4">{colecao.nome}</p>
               </div>
               <div className="flex items-center">
-                <p className="mr-4 text-lg">{preco}</p>
+                <p className="mr-4 text-lg">{colecao.totalProdutos} produtos</p>
                 <FiEdit size={26} />
               </div>
             </div>
           );
         })}
 
-        {/* Paginação */}
         <div className="flex justify-center mt-4 gap-2">
           <button
             onClick={() => mudarPagina(paginaAtual - 1)}
@@ -168,9 +157,9 @@ export default function Produtos() {
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-10 rounded-lg shadow-lg w-96 items-center flex flex-col text-center">
-            <h2 className="text-2xl font-medium mb-4">Remover Produtos</h2>
+            <h2 className="text-2xl font-medium mb-4">Remover Coleções</h2>
             <p className="mb-10">
-              Tem certeza de que deseja remover os produtos selecionados?
+              Tem certeza de que deseja remover as coleções selecionadas?
             </p>
             <div className="flex justify-between">
               <button
