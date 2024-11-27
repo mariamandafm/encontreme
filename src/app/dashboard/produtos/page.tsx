@@ -1,5 +1,3 @@
-"use client"
-
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { FiEdit } from 'react-icons/fi';
@@ -16,6 +14,7 @@ const produtos = [
   { id: 9, nome: 'Vitrificação', preco: 2100.00 },
   { id: 10, nome: 'Vitrificação', preco: 600.00 },
   { id: 11, nome: 'Vitrificação', preco: 100.00 },
+  { id: 12, nome: 'Vitrificação', preco: 100.00 },
 ];
 
 export default function Produtos() {
@@ -72,12 +71,18 @@ export default function Produtos() {
           );
         })}
 
-        {/* Controles de Paginação */}
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center mt-4 gap-2">
+          <button
+            onClick={() => mudarPagina(1)}
+            disabled={paginaAtual === 1}
+            className={`px-4 py-2 rounded-l-md ${paginaAtual === 1 ? 'bg-gray-300' : 'bg-black text-white hover:bg-zinc-800'}`}
+          >
+            Primeira
+          </button>
           <button
             onClick={() => mudarPagina(paginaAtual - 1)}
             disabled={paginaAtual === 1}
-            className={`px-4 py-2 rounded-l-md ${paginaAtual === 1 ? 'bg-gray-300' : 'bg-black text-white hover:bg-zinc-800'}`}
+            className={`px-4 py-2 ${paginaAtual === 1 ? 'bg-gray-300' : 'bg-black text-white hover:bg-zinc-800'}`}
           >
             Anterior
           </button>
@@ -85,9 +90,16 @@ export default function Produtos() {
           <button
             onClick={() => mudarPagina(paginaAtual + 1)}
             disabled={paginaAtual === totalPaginas}
-            className={`px-4 py-2 rounded-r-md ${paginaAtual === totalPaginas ? 'bg-gray-300' : 'bg-black text-white hover:bg-zinc-800'}`}
+            className={`px-4 py-2 ${paginaAtual === totalPaginas ? 'bg-gray-300' : 'bg-black text-white hover:bg-zinc-800'}`}
           >
             Próximo
+          </button>
+          <button
+            onClick={() => mudarPagina(totalPaginas)}
+            disabled={paginaAtual === totalPaginas}
+            className={`px-4 py-2 rounded-r-md ${paginaAtual === totalPaginas ? 'bg-gray-300' : 'bg-black text-white hover:bg-zinc-800'}`}
+          >
+            Última
           </button>
         </div>
       </div>
