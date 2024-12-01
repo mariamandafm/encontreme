@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import "@/styles/globals.css";
 import { Syne } from "next/font/google";
 
 export const metadata: Metadata = {
