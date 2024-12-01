@@ -8,11 +8,11 @@ import Link from "next/link";
 
 const Modelos = () => {
   return (
-    <div className="p-12">
+    <div className="md:p-10 p-4">
       <div className="flex justify-between pb-3">
         <h1 className="text-2xl font-medium">Modelos</h1>
       </div>
-      <div className="bg-white w-full rounded-3xl p-12">
+      <div className="bg-white w-full rounded-3xl md:p-12 p-4">
         <div className="bg-box rounded-3xl">
           <div className="relative w-full h-[200px] overflow-hidden rounded-3xl">
             <Image
@@ -30,7 +30,7 @@ const Modelos = () => {
             </div>
             <div className="flex flex-col gap-3">
                 <button className="bg-white text-xl px-4 py-2 rounded-3xl hover:text-secondaryBlue">Visualizar</button>
-                <button className="bg-white text-xl px-4 py-2 rounded-3xl border-black border-solid">Atual</button>
+                <button className="bg-white text-xl px-4 py-2 rounded-3xl border-black border-solid border-2">Atual</button>
             </div>
           </div>
         </div>

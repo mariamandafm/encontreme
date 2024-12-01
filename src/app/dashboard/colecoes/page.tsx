@@ -68,7 +68,7 @@ export default function Colecoes() {
 
   return (
     <>
-      <div className="flex justify-between mx-12 mt-12">
+      <div className="flex justify-between mx-4 mt-4 md:mx-12 md:mt-8">
         <h1 className="text-2xl font-medium">Coleções</h1>
         <div className="flex flex-row gap-4">
           <button onClick={() => router.push("/dashboard/colecoes/novo")} className="bg-black px-6 py-1 rounded-3xl hover:bg-zinc-800 duration-75 transition-colors">
@@ -76,7 +76,7 @@ export default function Colecoes() {
           </button>
         </div>
       </div>
-      <div className="flex bg-white mx-12 mt-7 mb-7 p-7 rounded-3xl h-full flex-col">
+      <div className="flex bg-white mx-4 md:mx-12 mt-7 mb-7 p-7 rounded-3xl h-full flex-col">
         <div className="flex items-center mb-4 justify-between">
           <div className="flex items-center">
             <input

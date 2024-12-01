@@ -14,12 +14,12 @@ const NovoProduto = () => {
   const router = useRouter();
   return (
     <>
-      <div className="mx-12 mt-8">
+      <div className="mx-4 mt-4 md:mx-12 md:mt-8">
         <div className="flex justify-between mb-3">
-          <div className="flex justify-between w-full">
+          <div className="md:flex justify-between w-full">
             <button
               onClick={() => router.back()}
-              className="bg-white hover:bg-gray-200 rounded-full py-1 px-4 flex items-center"
+              className="bg-white hover:bg-gray-200 rounded-full py-1 px-4 flex items-center mb-2 md:mb-0"
             >
               <FiArrowLeft size={18} />
               <p className="text-black ml-2">
@@ -49,8 +49,8 @@ const NovoProduto = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-5 gap-10 items-start mt-8">
-          <div className="col-span-3 flex flex-col gap-10">
+        <div className="grid md:grid-cols-5 gap-5 md:gap-10 items-start mt-8">
+          <div className="md:col-span-3 flex flex-col gap-10">
             <div className="bg-white rounded-3xl p-7">
               <Input placeholder="Digite o nome do produto">Nome do Produto</Input>
 
@@ -69,7 +69,7 @@ const NovoProduto = () => {
           </div>
 
 
-          <div className="col-span-2 bg-white rounded-3xl p-7">
+          <div className="md:col-span-2 bg-white rounded-3xl p-7">
             <Select title="Visibilidade">
               <option>Rascunho</option>
               <option>Publicado</option>

@@ -25,16 +25,16 @@ const MinhaLoja = () => {
     }
 
     return (
-        <div className="p-12">
-            <div className="flex justify-between pb-3">
-                <h1 className="text-2xl font-medium">Minha Loja</h1>
+        <div className="md:p-12 p-4">
+            <div className="md:flex justify-between pb-3">
+                <h1 className="text-2xl font-medium mb-2 md:mb-0">Minha Loja</h1>
                 <div className='flex flex-row gap-4'>
                     <Link href="/minhaloja"  className="bg-white px-4 py-1 rounded-3xl hover:text-secondaryBlue">Ver</Link>
                     <button className="bg-white px-4 py-1 rounded-3xl hover:text-secondaryBlue">Salvar Alterações</button>
                 </div>
             </div>
-            <div className="grid grid-cols-5 gap-10 items-start">
-                <div className="col-span-3 flex flex-col gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-5 md:gap-10 items-start">
+                <div className="md:col-span-3 flex flex-col gap-10">
                     <div className="bg-white rounded-3xl p-7">
                         <div className='relative w-full h-[200px] overflow-hidden rounded-md'>
                             <Image
@@ -54,7 +54,7 @@ const MinhaLoja = () => {
                         <div className="mt-4">
                             <label className="font-medium">Link de Acesso</label>
                             <div className="relative flex items-center mt-2 w-full h-11 bg-box rounded-md border-0 p-3 text-gray-900 focus:ring-1 focus:ring-inset focus:ring-secondaryBlue">
-                                <span className="text-gray-00 select-none">https://encontreme.com/</span>
+                                <span className="text-gray-00 select-none"><span className='hidden md:inline'>https://</span>encontreme.com/</span>
                                 <input type="text" ref={linkRef} defaultValue="minhaloja" className="bg-transparent focus:ring-0 focus:outline-none" />
                                 <div
                                     onClick={handleLinkCopy}
@@ -71,7 +71,7 @@ const MinhaLoja = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-2 bg-white rounded-3xl p-7">
+                <div className="md:col-span-2 bg-white rounded-3xl p-7">
                     <Select title="Publicação">
                         <option>Publicado</option>
                         <option>Rascunho</option>

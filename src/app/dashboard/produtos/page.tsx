@@ -69,7 +69,7 @@ export default function Produtos() {
 
   return (
     <>
-      <div className="flex justify-between mx-12 mt-12">
+      <div className="flex justify-between mx-4 md:mx-12 mt-4 md:mt-12">
         <h1 className="text-2xl font-medium">Produtos</h1>
         <div className="flex flex-row gap-4">
           <button onClick={() => router.push("/dashboard/produtos/novo")} className="bg-black px-6 py-1 rounded-3xl hover:bg-zinc-800 duration-75 transition-colors">
@@ -77,7 +77,7 @@ export default function Produtos() {
           </button>
         </div>
       </div>
-      <div className="flex bg-white mx-12 mt-7 mb-7 p-7 rounded-3xl h-full flex-col">
+      <div className="flex bg-white mx-4 md:mx-12 mt-7 mb-7 p-7 rounded-3xl h-full flex-col">
         {/* Checkbox para selecionar/desmarcar todos */}
         <div className="flex items-center mb-4 justify-between">
           <div className="flex items-center">
@@ -108,7 +108,7 @@ export default function Produtos() {
           return (
             <div
               key={produto.id}
-              className={`w-full bg-box hover:bg-gray-100 mt-3 p-3 flex justify-between items-center rounded-xl cursor-pointer ${isSelecionado ? 'border border-black' : ''}`}
+              className={`w-full bg-box hover:bg-gray-100 mt-3 p-3 md:flex md:justify-between items-center rounded-xl cursor-pointer ${isSelecionado ? 'border border-black' : ''}`}
             >
               <div className="flex items-center">
                 <input
@@ -126,7 +126,7 @@ export default function Produtos() {
                 />
                 <p className="ml-4">{produto.nome}</p>
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center justify-end">
                 <p className="mr-4 text-lg">{preco}</p>
                 <FiEdit size={26} />
               </div>
