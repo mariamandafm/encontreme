@@ -13,6 +13,7 @@ module.exports = {
         primary: "var(--primary)",
         primaryBlue: "var(--primary-blue)",
         box: "var(--box)",
+        stroke: "var(--stroke)",
       },
       fontFamily: {
         logo: ['var(--font-syne)'],
