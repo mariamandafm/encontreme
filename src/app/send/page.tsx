@@ -11,19 +11,17 @@ export default function Login() {
     <div className="w-screen h-screen bg-primary flex">
       <div className="w-1/2 h-full flex items-center justify-center flex-col">
         <Image src="/logo.svg" height={100} width={200} alt="Logo EncontreMe." />
-        <p className="flex mt-16">
-          Insira o e-mail associado a sua conta<p className="text-[#0C5E84] font-medium ml-2"></p>
+        
+        <Image src="/send.svg" height={120} width={120} alt="" className="mt-8"></Image>
+        
+        <p className="w-80 mt-8">
+          Enviamos um email para usuario@gmail.com com as instruções para mudança de senha 
         </p>
 
-        <form className="w-80 mt-8" onSubmit={(e) => {
-          e.preventDefault()
-          router.push("/send")
-        }}>
-          <label className="font-medium">E-mail</label>
-          <input type="email" placeholder="exemplo@gmail.com" className="outline-black mt-2 w-full h-11 bg-white rounded-md border-0 p-3 text-gray-900 focus:ring-1 focus:ring-inset focus:ring-secondaryBlue" />
+        <p className="w-80 mt-2 text-center text-stone-500 text-sm">
+        Caso não tenha recebido, verifique sua caixa de spam ou tente novamente
+        </p>
 
-          <button type="submit" className="w-full bg-black px-4 py-3 mt-8 text-white rounded-full hover:bg-gray-900">Continuar</button>
-        </form>
         <Link href="/login" className="underline mt-6">Voltar para o Login</Link>
       </div>
 
