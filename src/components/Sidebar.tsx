@@ -49,13 +49,13 @@ const Sidebar = () => {
                 <FiCornerDownRight className="text-xl" />
                 Modelos
               </Link>
-              <Link href="#" className={`flex items-center gap-2 p-2 ${isActive('#') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
+              <Link href="/dashboard/plano" className={`flex items-center gap-2 p-2 ${isActive('#') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
                 <FiDollarSign className="text-xl" />
                 Meu Plano
               </Link>
             </div>
             <div>
-              <Link href="#" className={`flex items-center gap-2 p-2 ${isActive('#') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
+              <Link href="/dashboard/configuracoes" className={`flex items-center gap-2 p-2 ${isActive('#') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
                 <FiSettings className="text-xl" />
                 Configurações
               </Link>

@@ -11,14 +11,14 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="mx-12 mt-8">
+      <div className="mx-4 md:mx-12 mt-8">
         <div className="flex justify-between mb-3">
           <div className="flex justify-between w-full">
             <h2 className='text-2xl'>Página Inicial</h2>
           </div>
         </div>
 
-        <div className="grid grid-cols-6 gap-10 items-start mt-8">
+        <div className="grid md:grid-cols-6 gap-10 items-start mt-8 ">
           <div className="col-span-3 flex flex-col gap-10">
 
             <div className="bg-white rounded-3xl p-7 h-[22rem]">

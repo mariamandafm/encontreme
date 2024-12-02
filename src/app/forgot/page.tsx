@@ -12,7 +12,7 @@ export default function Login() {
       <div className="w-1/2 h-full flex items-center justify-center flex-col">
         <Image src="/logo.svg" height={100} width={200} alt="Logo EncontreMe." />
         <p className="flex mt-16">
-          Insira o e-mail associado a sua conta<p className="text-[#0C5E84] font-medium ml-2"></p>
+          Insira o e-mail associado a sua conta
         </p>
 
         <form className="w-80 mt-8" onSubmit={(e) => {
