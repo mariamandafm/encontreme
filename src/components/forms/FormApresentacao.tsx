@@ -11,7 +11,7 @@ const FormApresentacao = () => {
       <h1 className='text-xl'>Imagem de Apresentação</h1>
       <span className="text-sm">Tamanho recomendado: 300x1000</span>
       <div className="relative bg-box flex content-center justify-center  h-32 mb-3">
-        <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" />
+        <img src="/presentation.jpg" />
         </div>
         <div className='flex justify-start gap-3 text-base '>
             <button className='flex items-center gap-2 bg-box px-3 py-1 rounded-3xl'><FiUploadCloud />Alterar</button>

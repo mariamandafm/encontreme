@@ -8,12 +8,14 @@ const Navbar = () => {
     <nav className="w-full text-lg flex items-center justify-center bg-white h-16 ">
       <div className="flex justify-between w-11/12">
         <div className="flex items-center gap-10">
-          <Image 
-            src="https://www.svgrepo.com/show/98047/vase.svg"
-            alt="Logo"
-            width={35}
-            height={35}
-          />
+          <Link href="/minhaloja">
+            <Image 
+              src="https://www.svgrepo.com/show/98047/vase.svg"
+              alt="Logo"
+              width={35}
+              height={35}
+            />
+          </Link>
           <ul className="hidden gap-8 md:flex">
             <li><a href="#banner">Início</a></li>
             <li><a href="#produtos">Produtos</a></li>

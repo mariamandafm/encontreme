@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react';
 import { FiChevronLeft, FiChevronRight, FiEdit } from 'react-icons/fi';
+import { ceramicProducts } from '@/data/products';
 
 const initialProdutos = [
   { id: 1, nome: 'Espelhamento de Pintura', preco: 150.0 },
@@ -19,7 +20,7 @@ const initialProdutos = [
 ];
 
 export default function Produtos() {
-  const [produtos, setProdutos] = useState(initialProdutos);
+  const [produtos, setProdutos] = useState(ceramicProducts);
   const [selecionados, setSelecionados] = useState<number[]>([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
   const [showModal, setShowModal] = useState(false);
@@ -102,7 +103,7 @@ export default function Produtos() {
           )}
         </div>
         {produtosPagina.map((produto) => {
-          const preco = produto.preco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+          const preco = produto.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
           const isSelecionado = selecionados.includes(produto.id);
 
           return (
@@ -119,12 +120,12 @@ export default function Produtos() {
                 />
                 <Image
                   className="ml-4 h-10 w-10 object-fill rounded-lg"
-                  src="/produto_exemplo01.png"
+                  src={produto.imageURL}
                   alt="Imagem de Vitrificação"
                   height={80}
                   width={80}
                 />
-                <p className="ml-4">{produto.nome}</p>
+                <p className="ml-4">{produto.name}</p>
               </div>
               <div className="flex items-center justify-end">
                 <p className="mr-4 text-lg">{preco}</p>

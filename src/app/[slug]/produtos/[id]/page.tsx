@@ -17,7 +17,7 @@ export default function ProductPage() {
   useEffect(() => {
     console.log(id);
     if (id) {
-      const foundProduct = ceramicProducts.find((prod) => prod.slug == id);
+      const foundProduct = ceramicProducts.find((prod) => prod.id === Number(id));
       setProduct(foundProduct || null);
     }
   }, [id]);
@@ -29,18 +29,17 @@ export default function ProductPage() {
   return (
     <div>
       <Navbar />
-      <div className="flex justify-center mt-12 font-sans mb-14">
-        <div className="bg-white grid grid-cols-1 md:grid-cols-5 gap-4 w-8/12 sm:w-9/12 px-4 py-8 shadow-lg">
-          <div className="flex justify-center items-cente col-span-2">
+      <div className="flex justify-center h-screen mt-4 md:mt-12 font-sans mb-20">
+        <div className="bg-white grid grid-cols-1 h-10/12 md:grid-cols-5 md:gap-4 w-11/12 md:w-11/12 px-4 py-8 shadow-lg h-[700px] md:h-[450px]">
+          <div className="flex justify-center items-start col-span-2">
             <img
               src={product.imageURL}
               alt={product.name}
-              className="w-72 h-72 object-cover shadow-md"
+              className="w-96 h-96 object-cover shadow-md"
             />
           </div>
-
           <div className="flex flex-col justify-between col-span-2">
-            <div>
+            <div className="mb-10">
               <h1 className="text-xl font-semibold text-gray-800">
                 {product.name}
               </h1>

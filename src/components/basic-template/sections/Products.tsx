@@ -12,6 +12,7 @@ const Products = () => {
           {ceramicProducts.map((product, index) => (
             <ProductCard
               key={index}
+              id={product.id}
               name={product.name}
               price={product.price}
               description={product.description}
@@ -37,14 +38,6 @@ const Products = () => {
               className="flex items-center justify-center px-3 h-8 text-white bg-orange-600 border border-orange-600 rounded-md hover:bg-orange-700 hover:border-orange-700"
             >
               1
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="flex items-center justify-center px-3 h-8 leading-tight text-gray-600 bg-white border border-gray-300 hover:bg-gray-200 hover:text-gray-800"
-            >
-              2
             </a>
           </li>
           <li>
