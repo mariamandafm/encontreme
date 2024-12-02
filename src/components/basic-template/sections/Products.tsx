@@ -1,7 +1,6 @@
 import React from 'react'
 import ProductCard from './ProductCard';
 import { ceramicProducts } from '@/data/products';
-import { useRouter } from 'next/router';
 
 const Products = () => {
   return (

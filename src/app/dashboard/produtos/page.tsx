@@ -5,20 +5,6 @@ import React, { useState } from 'react';
 import { FiChevronLeft, FiChevronRight, FiEdit } from 'react-icons/fi';
 import { ceramicProducts } from '@/data/products';
 
-const initialProdutos = [
-  { id: 1, nome: 'Espelhamento de Pintura', preco: 150.0 },
-  { id: 2, nome: 'Vitrificação', preco: 200.0 },
-  { id: 3, nome: 'Vitrificação', preco: 220.0 },
-  { id: 4, nome: 'Vitrificação', preco: 1200.0 },
-  { id: 5, nome: 'Vitrificação', preco: 30.0 },
-  { id: 6, nome: 'Vitrificação', preco: 2400.0 },
-  { id: 7, nome: 'Vitrificação', preco: 230.0 },
-  { id: 8, nome: 'Vitrificação', preco: 400.0 },
-  { id: 9, nome: 'Vitrificação', preco: 2100.0 },
-  { id: 10, nome: 'Vitrificação', preco: 600.0 },
-  { id: 11, nome: 'Vitrificação', preco: 100.0 },
-];
-
 export default function Produtos() {
   const [produtos, setProdutos] = useState(ceramicProducts);
   const [selecionados, setSelecionados] = useState<number[]>([]);

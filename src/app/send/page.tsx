@@ -2,24 +2,21 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export default function Login() {
-  const router = useRouter();
-
   return (
     <div className="w-screen h-screen bg-primary flex">
       <div className="w-1/2 h-full flex items-center justify-center flex-col">
         <Image src="/logo.svg" height={100} width={200} alt="Logo EncontreMe." />
-        
+
         <Image src="/send.svg" height={120} width={120} alt="" className="mt-8"></Image>
-        
+
         <p className="w-80 mt-8">
-          Enviamos um email para usuario@gmail.com com as instruções para mudança de senha 
+          Enviamos um email para usuario@gmail.com com as instruções para mudança de senha
         </p>
 
         <p className="w-80 mt-2 text-center text-stone-500 text-sm">
-        Caso não tenha recebido, verifique sua caixa de spam ou tente novamente
+          Caso não tenha recebido, verifique sua caixa de spam ou tente novamente
         </p>
 
         <Link href="/login" className="underline mt-6">Voltar para o Login</Link>

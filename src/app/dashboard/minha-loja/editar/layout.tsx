@@ -1,16 +1,16 @@
 import { SectionProvider } from "@/contexts/SectionContext";
 import { PageProvider } from "@/contexts/PageContext";
 
-export default function RootLayout({
+export default function EditLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <PageProvider>
-        <SectionProvider>
-            {children}
-        </SectionProvider>
+      <SectionProvider>
+        {children}
+      </SectionProvider>
     </PageProvider>
   );
 }

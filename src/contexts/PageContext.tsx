@@ -1,7 +1,6 @@
 'use client';
 
 import React, { createContext, useContext, useState } from "react";
-import { templates } from "../data/templates";
 
 type PageContextType = {
   currentPage: string;

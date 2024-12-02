@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FiLogIn } from "react-icons/fi";
 
 export default function Chat() {
   return (
@@ -16,13 +15,13 @@ export default function Chat() {
 
         <div className="bg-white rounded-lg p-8">
           <div className="flex gap-6">
-          <Image src="/Chat.png" alt="" width={40} height={40} className ="object-contain"/>
+            <Image src="/Chat.png" alt="" width={40} height={40} className="object-contain" />
 
-          <div>
-            <p>Olá,</p>
-            <p>Vamos iniciar a configuração do seu site.</p>
-            <p>Primeiro, qual é o nome do seu negócio?</p>
-          </div>
+            <div>
+              <p>Olá,</p>
+              <p>Vamos iniciar a configuração do seu site.</p>
+              <p>Primeiro, qual é o nome do seu negócio?</p>
+            </div>
           </div>
         </div>
 
@@ -35,15 +34,15 @@ export default function Chat() {
           <button
             className="bg-black text-white rounded-full ml-2 p-3 flex items-center justify-center hover:bg-gray-800 w-12 h-12"
             aria-label="Enviar"
-            >
+          >
             ↑
           </button>
         </div>
       </div>
 
       <div className="mt-10 mx-48 flex">
-          
-        </div>
+
+      </div>
     </>
   );
 }

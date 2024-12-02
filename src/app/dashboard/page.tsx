@@ -3,11 +3,14 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import Chart from "react-apexcharts";
+import dynamic from "next/dynamic";
 import { FiArrowRight, FiEye } from 'react-icons/fi';
 
 export default function Dashboard() {
   const router = useRouter();
+
+  const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+
 
   return (
     <>
@@ -36,7 +39,7 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              <div className="">
+              <div>
                 <Chart
                   height={240}
                   series={

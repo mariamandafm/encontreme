@@ -2,10 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import { FiCopy, FiCheck } from "react-icons/fi";
-import Image from 'next/image'
 import Input from '../../../components/FormInput';
-import Select from '../../../components/SelectInput';
-import Link from 'next/link';
 
 
 const MinhaLoja = () => {
@@ -31,7 +28,7 @@ const MinhaLoja = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-5 gap-5 md:gap-10 items-start">
                 <div className="md:col-span-3 flex flex-col gap-10">
-                    
+
                     <div className="bg-white rounded-3xl p-7">
                         <h2 className="text-2xl font-medium mb-8 md:mb-0">Acesso</h2>
                         <div className="mt-4">
@@ -73,8 +70,8 @@ const MinhaLoja = () => {
                     <h2 className="text-2xl font-medium mb-8 md:mb-0">Plano</h2>
 
                     <div className="mt-4">
-                            <Input placeholder="Estelar" type="text">Plano Atual</Input>
-                        </div>
+                        <Input placeholder="Estelar" type="text">Plano Atual</Input>
+                    </div>
                 </div>
             </div>
         </div>
