@@ -20,8 +20,6 @@ export default function Home() {
         <div className="w-72 h-52 bg-primaryBlue" />
       </div>
       <Image className="absolute right-48 bottom-0" src="/login_star.svg" height={800} width={450} alt="Ilustração de azul subindo." />
-
-
     </section>
   );
 }

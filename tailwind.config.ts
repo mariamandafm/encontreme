@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     "./src/app/*.tsx",
@@ -19,6 +20,7 @@ module.exports = {
       fontFamily: {
         logo: ['var(--font-syne)'],
       },
+       
     },
   },
   plugins: [],
