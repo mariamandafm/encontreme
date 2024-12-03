@@ -140,7 +140,7 @@ export default function Dashboard() {
               <br />
               Recursos</p>
             <Image className='absolute right-0 h-64' src="/plan.svg" height={300} width={300} alt="Ilustração de Estrela" />
-            <div className='z-10'>
+            <div className='z-[9]'>
               <label>Plano atual</label>
               <button className='hover:bg-gray-100 mt-2 w-full bg-box rounded-lg flex justify-between p-3'>
                 <p>Gratuito</p>

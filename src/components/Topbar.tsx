@@ -7,9 +7,12 @@ import { FiMenu, FiUser } from "react-icons/fi";
 
 import { usePathname } from 'next/navigation';
 import TopbarEdit from './TopbarEdit';
+import { useSidebar } from '../contexts/SideBarContext';
 
 const Topbar = () => {
     const pathname = usePathname();
+    const { setSideBarValue, sideBar } = useSidebar();
+
     return (
         <div>
             {
@@ -17,7 +20,7 @@ const Topbar = () => {
                     ? <TopbarEdit />
                     :
                     <nav className="fixed top-0 left-0 w-full h-16 text-white bg-black z-10 flex items-center px-4 justify-between">
-                        <button className='md:hidden'>
+                        <button className='md:hidden' onClick={() => setSideBarValue(!sideBar)}>
                             <FiMenu size={28} />
                         </button>
                         <div>

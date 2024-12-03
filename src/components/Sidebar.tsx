@@ -1,8 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
+import { useSidebar } from "../contexts/SideBarContext";
+
 
 import {
   FiHome,
@@ -17,13 +20,23 @@ const Sidebar = () => {
   const pathname = usePathname();
   const isActive = (path: string) => pathname === path;
 
+  const { sideBar, setSideBarValue } = useSidebar();
+
+
+  useEffect(() => {
+    if (sideBar) {
+      setSideBarValue(!sideBar);
+    }
+  }, [pathname]);
+
+
   return (
     <div>
       {
         pathname == "/dashboard/minha-loja/editar"
           ? null
           :
-          <aside className="font-logo h-[calc(100%-4rem)] text-lg fixed left-0 w-64 bg-white flex flex-col rounded-tl-3xl p-5 justify-between">
+          <aside className={`font-logo h-[calc(100%-4rem)] text-lg fixed left-0 w-64 bg-white flex-col rounded-tl-3xl p-5 justify-between z-10 ${sideBar ? "translate-x-0 md:flex" : "-translate-x-full md:flex"} transition-transform ease-in-out`}>
             <div className="flex flex-col gap-1">
               <Link href="/dashboard" className={`flex items-center gap-2 p-2 ${isActive('/dashboard') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
                 <FiHome className="text-xl" />
