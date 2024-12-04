@@ -93,7 +93,8 @@ export default function Produtos() {
           const isSelecionado = selecionados.includes(produto.id);
 
           return (
-            <div
+            <button
+              onClick={() => router.push(`/dashboard/produtos/editar/${produto.id}`)}
               key={produto.id}
               className={`w-full bg-box hover:bg-gray-100 mt-3 p-3 md:flex md:justify-between items-center rounded-xl cursor-pointer ${isSelecionado ? 'border border-black' : ''}`}
             >
@@ -117,7 +118,7 @@ export default function Produtos() {
                 <p className="mr-4 text-lg">{preco}</p>
                 <FiEdit size={26} />
               </div>
-            </div>
+            </button>
           );
         })}
 

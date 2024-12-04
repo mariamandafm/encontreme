@@ -103,7 +103,8 @@ export default function Colecoes() {
           const isSelecionado = selecionados.includes(colecao.id);
 
           return (
-            <div
+            <button
+              onClick={() => router.push("/dashboard/colecoes/editar/1")}
               key={colecao.id}
               className={`w-full bg-box hover:bg-gray-100 mt-3 p-3 flex justify-between items-center rounded-xl cursor-pointer ${isSelecionado ? 'border border-black' : ''}`}
             >
@@ -120,7 +121,7 @@ export default function Colecoes() {
                 <p className="mr-4 text-lg">{colecao.totalProdutos} produtos</p>
                 <FiEdit size={26} />
               </div>
-            </div>
+            </button>
           );
         })}
 
