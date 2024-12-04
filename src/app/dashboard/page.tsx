@@ -31,8 +31,8 @@ export default function Dashboard() {
                 <div className='flex items-center'>
 
                   <span className="relative flex h-2 w-2 mr-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#86dce2] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#89CBD0]"></span>
                   </span>
 
                   <p className='text-sm'>12 ONLINE</p>
@@ -142,7 +142,7 @@ export default function Dashboard() {
             <Image className='absolute right-0 h-64' src="/plan.svg" height={300} width={300} alt="Ilustração de Estrela" />
             <div className='z-[9]'>
               <label>Plano atual</label>
-              <button className='hover:bg-gray-100 mt-2 w-full bg-box rounded-lg flex justify-between p-3'>
+              <button onClick={() => router.push("/dashboard/plano")} className='hover:bg-gray-100 mt-2 w-full bg-box rounded-lg flex justify-between p-3'>
                 <p>Gratuito</p>
                 <div className='flex items-center'>
                   <p className='text-stroke mr-2'>VER PLANOS</p>

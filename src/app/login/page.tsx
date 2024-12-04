@@ -8,8 +8,8 @@ export default function Login() {
   const router = useRouter();
 
   return (
-    <div className="w-screen h-screen bg-primary flex">
-      <div className="w-1/2 h-full flex items-center justify-center flex-col">
+    <div className="w-screen h-screen bg-primary flex flex-col md:flex-row">
+      <div className="w-full md:w-1/2 h-full flex items-center justify-center flex-col my-20 md:my-0">
         <Image src="/logo.svg" height={100} width={200} alt="Logo EncontreMe." />
         <Link href="/register" className="flex mt-16">
           Ainda não tem uma conta? <p className="text-[#0C5E84] font-medium ml-2">Registre-se</p>
@@ -32,10 +32,10 @@ export default function Login() {
         <Link href="/forgot" className="underline mt-6">Esqueci minha senha</Link>
       </div>
 
-      <div className="relative w-1/2 h-auto flex items-center justify-center p-16">
+      <div className="relative w-full md:w-1/2 h-auto flex items-center justify-center p-8 md:p-16">
         <div className="bg-[#0C5E84] w-full h-full rounded-3xl p-10 flex justify-between flex-col">
-          <h3 className="text-white text-5xl w-[90%]">O futuro do seu negócio começa aqui.</h3>
-          <p className="text-white text-2xl w-2/3">Com nossa plataforma, você cria seu site em minutos e leva seu negócio mais longe.</p>
+          <h3 className="text-white text-4xl lg:text-5xl w-full lg:w-[90%]">O futuro do seu negócio começa aqui.</h3>
+          <p className="text-white text-xl lg:text-2xl w-full lg:w-2/3 my-8 md:my-0">Com nossa plataforma, você cria seu site em minutos e leva seu negócio mais longe.</p>
           <Image className="w-full" src="/card_login.svg" width={1200} height={400} alt="Card Incentivador - Construa seu site hoje mesmo e veja o seu negócio crescer." />
         </div>
       </div>
