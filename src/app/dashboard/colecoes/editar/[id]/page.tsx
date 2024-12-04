@@ -1,22 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "@/components/FormInput";
 import Select from "@/components/SelectInput";
 import { FiArrowLeft, FiEye } from "react-icons/fi";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
+import { collections } from "../../../../../data/colections";
+import { CeramicProduct, ceramicProducts } from "../../../../../data/products";
 
 const Editar = () => {
   const [showModal, setShowModal] = useState(false);
   const [showAddProductModal, setShowAddProductModal] = useState(false);
-  const [produtos, setProdutos] = useState([{ id: 1, nome: "Vitrificação", imagem: "/produto_exemplo01.png" },]);
-  const [produtosDisponiveis] = useState([
-    { id: 2, nome: "Espelhamento de pintura", imagem: "/produto_exemplo01.png" },
-    { id: 3, nome: "Hidratação de bancos de couro", imagem: "/produto_exemplo01.png" },
-    { id: 4, nome: "Polimento Técnico", imagem: "/produto_exemplo01.png" },
-    { id: 5, nome: "Lavagem a Seco", imagem: "/produto_exemplo01.png" },
-  ]);
+  const [produtos, setProdutos] = useState<CeramicProduct[]>([]);
+  const [produtosDisponiveis] = useState(ceramicProducts);
   const [produtosSelecionadosModal, setProdutosSelecionadosModal] = useState<number[]>([]);
   const [produtosSelecionados, setProdutosSelecionados] = useState<number[]>([]);
   const [confirmModal, setConfirmModal] = useState(false);
@@ -24,7 +21,18 @@ const Editar = () => {
   const router = useRouter();
   const params = useParams<{ id: string }>()
 
-  console.log(params.id)
+  const collection = collections.find((collection) => collection?.id === Number(params.id));
+
+  useEffect(() => {
+    if (collection) {
+      setProdutos(collection.products);
+    }
+  }, [collection])
+
+  if (collection === undefined) {
+    router.push('/dashboard/colecoes');
+    return null;
+  }
 
   const removerProdutoSelecionado = () => {
     setProdutos((prevProdutos) =>
@@ -99,7 +107,7 @@ const Editar = () => {
         <div className="grid md:grid-cols-5 gap-5 md:gap-10 items-start mt-8">
           <div className="md:col-span-3 flex flex-col gap-10">
             <div className="bg-white rounded-3xl p-7">
-              <Input placeholder="Digite o nome da coleção">Nome da Coleção</Input>
+              <Input defaultValue={collection.name} placeholder="Digite o nome da coleção">Nome da Coleção</Input>
 
               <div className="flex justify-between items-center mt-6">
                 <p className="font-medium">Produtos</p>
@@ -140,11 +148,11 @@ const Editar = () => {
                       <Image
                         height={100}
                         width={100}
-                        src={produto.imagem}
-                        alt={produto.nome}
+                        src={produto.imageURL}
+                        alt={produto.name}
                         className="w-10 h-10 rounded-md object-cover mr-4"
                       />
-                      <p>{produto.nome}</p>
+                      <p>{produto.name}</p>
                     </div>
                     <div className="flex items-center gap-3">
                       <FiEye stroke="#C4C4C4" size={24} className="cursor-pointer" />
@@ -156,7 +164,7 @@ const Editar = () => {
           </div>
 
           <div className="md:col-span-2 bg-white rounded-3xl p-7">
-            <Select title="Visibilidade">
+            <Select defaultValue={Boolean(collection.visibility) ? "Publicado" : "Rascunho"} title="Visibilidade">
               <option>Rascunho</option>
               <option>Publicado</option>
             </Select>
@@ -242,11 +250,11 @@ const Editar = () => {
                       <Image
                         height={100}
                         width={100}
-                        src={produto.imagem}
-                        alt={produto.nome}
+                        src={produto.imageURL}
+                        alt={produto.name}
                         className="w-10 h-10 rounded-md object-cover mr-4"
                       />
-                      <p>{produto.nome}</p>
+                      <p>{produto.name}</p>
                     </div>
                   </div>
                 ))}

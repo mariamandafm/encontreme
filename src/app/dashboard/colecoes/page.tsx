@@ -2,20 +2,9 @@
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { FiChevronLeft, FiChevronRight, FiEdit } from 'react-icons/fi';
+import { collections } from '@/data/colections';
 
-const initialColecoes = [
-  { "id": 1, "nome": "Xícaras", "totalProdutos": 2 },
-  { "id": 2, "nome": "Mais Vendidos", "totalProdutos": 5 },
-  { "id": 3, "nome": "Cozinha", "totalProdutos": 10 },
-  { "id": 4, "nome": "Escritório", "totalProdutos": 7 },
-  { "id": 5, "nome": "Decoração", "totalProdutos": 12 },
-  { "id": 6, "nome": "Banheiro", "totalProdutos": 4 },
-  { "id": 7, "nome": "Quarto", "totalProdutos": 8 },
-  { "id": 8, "nome": "Sala", "totalProdutos": 6 },
-  { "id": 9, "nome": "Promoções", "totalProdutos": 3 },
-  { "id": 10, "nome": "Novidades", "totalProdutos": 9 },
-  { "id": 11, "nome": "BlackFriday", "totalProdutos": 9 }
-]
+const initialColecoes = collections;
 
 export default function Colecoes() {
   const [colecoes, setColecoes] = useState(initialColecoes);
@@ -104,7 +93,7 @@ export default function Colecoes() {
 
           return (
             <button
-              onClick={() => router.push("/dashboard/colecoes/editar/1")}
+              onClick={() => router.push(`/dashboard/colecoes/editar/${colecao.id}`)}
               key={colecao.id}
               className={`w-full bg-box hover:bg-gray-100 mt-3 p-3 flex justify-between items-center rounded-xl cursor-pointer ${isSelecionado ? 'border border-black' : ''}`}
             >
@@ -115,10 +104,10 @@ export default function Colecoes() {
                   checked={isSelecionado}
                   onChange={() => toggleSelecionado(colecao.id)}
                 />
-                <p className="ml-4">{colecao.nome}</p>
+                <p className="ml-4">{colecao.name}</p>
               </div>
               <div className="flex items-center">
-                <p className="mr-4 text-lg">{colecao.totalProdutos} produtos</p>
+                <p className="mr-4 text-lg">{colecao.totalProducts} produtos</p>
                 <FiEdit size={26} />
               </div>
             </button>

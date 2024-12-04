@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from 'react';
-import { FiCopy, FiCheck, FiArrowRight, FiEye } from "react-icons/fi";
+import { FiCopy, FiCheck, FiEye } from "react-icons/fi";
 import Input from '../../../components/FormInput';
 import { useRouter } from 'next/navigation';
 
@@ -40,11 +40,11 @@ const MinhaLoja = () => {
                                 <span className="text-gray-00 select-none">
                                     <span className='hidden md:inline'>https://</span>encontreme.com/
                                 </span>
-                                <input 
-                                    type="text" 
-                                    ref={linkRef} 
-                                    defaultValue="minhaloja" 
-                                    className="bg-transparent focus:ring-0 focus:outline-none" 
+                                <input
+                                    type="text"
+                                    ref={linkRef}
+                                    defaultValue="minhaloja"
+                                    className="bg-transparent focus:ring-0 focus:outline-none"
                                 />
                                 <div
                                     onClick={handleLinkCopy}
@@ -119,8 +119,8 @@ const MinhaLoja = () => {
                 <div className="md:col-span-2 bg-white rounded-3xl p-7">
                     <h2 className="text-2xl font-medium mb-8 md:mb-0">Plano</h2>
                     <div className="mt-4">
-                        <button 
-                            onClick={() => router.push("/dashboard/plano")} 
+                        <button
+                            onClick={() => router.push("/dashboard/plano")}
                             className='hover:bg-gray-100 mt-2 w-full bg-box rounded-lg flex justify-between p-3'
                         >
                             <p>Gratuito</p>

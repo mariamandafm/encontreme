@@ -6,17 +6,13 @@ import Select from "../../../../components/SelectInput";
 import { FiArrowLeft, FiEye } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { CeramicProduct, ceramicProducts } from "@/data/products";
 
 const NovaColecao = () => {
   const [showModal, setShowModal] = useState(false);
   const [showAddProductModal, setShowAddProductModal] = useState(false);
-  const [produtos, setProdutos] = useState([{ id: 1, nome: "Vitrificação", imagem: "/produto_exemplo01.png" },]);
-  const [produtosDisponiveis] = useState([
-    { id: 2, nome: "Espelhamento de pintura", imagem: "/produto_exemplo01.png" },
-    { id: 3, nome: "Hidratação de bancos de couro", imagem: "/produto_exemplo01.png" },
-    { id: 4, nome: "Polimento Técnico", imagem: "/produto_exemplo01.png" },
-    { id: 5, nome: "Lavagem a Seco", imagem: "/produto_exemplo01.png" },
-  ]);
+  const [produtos, setProdutos] = useState<CeramicProduct[]>([]);
+  const [produtosDisponiveis] = useState(ceramicProducts);
   const [produtosSelecionadosModal, setProdutosSelecionadosModal] = useState<number[]>([]);
   const [produtosSelecionados, setProdutosSelecionados] = useState<number[]>([]);
   const [confirmModal, setConfirmModal] = useState(false);
@@ -46,7 +42,6 @@ const NovaColecao = () => {
 
     setProdutos((prevProdutos) => {
       const idsExistentes = prevProdutos.map((produto) => produto.id);
-      // Adiciona apenas os produtos que não estão na lista atual
       const produtosUnificados = novosProdutos.filter(
         (produto) => !idsExistentes.includes(produto.id)
       );
@@ -137,11 +132,11 @@ const NovaColecao = () => {
                       <Image
                         height={100}
                         width={100}
-                        src={produto.imagem}
-                        alt={produto.nome}
+                        src={produto.imageURL}
+                        alt={produto.name}
                         className="w-10 h-10 rounded-md object-cover mr-4"
                       />
-                      <p>{produto.nome}</p>
+                      <p>{produto.name}</p>
                     </div>
                     <div className="flex items-center gap-3">
                       <FiEye stroke="#C4C4C4" size={24} className="cursor-pointer" />
@@ -239,11 +234,11 @@ const NovaColecao = () => {
                       <Image
                         height={100}
                         width={100}
-                        src={produto.imagem}
-                        alt={produto.nome}
+                        src={produto.imageURL}
+                        alt={produto.name}
                         className="w-10 h-10 rounded-md object-cover mr-4"
                       />
-                      <p>{produto.nome}</p>
+                      <p>{produto.name}</p>
                     </div>
                   </div>
                 ))}
