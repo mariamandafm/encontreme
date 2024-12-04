@@ -19,6 +19,7 @@ import {
 const Sidebar = () => {
   const pathname = usePathname();
   const isActive = (path: string) => pathname === path;
+  const isActiveSubstring = (path: string) => pathname.includes(path);
 
   const { sideBar, setSideBarValue } = useSidebar();
 
@@ -42,11 +43,11 @@ const Sidebar = () => {
                 <FiHome className="text-xl" />
                 Página Inicial
               </Link>
-              <Link href="/dashboard/produtos" className={`flex items-center gap-2 p-2 ${isActive('/dashboard/produtos') || isActive('/dashboard/produtos/novo') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
+              <Link href="/dashboard/produtos" className={`flex items-center gap-2 p-2 ${isActive('/dashboard/produtos') || isActive('/dashboard/produtos/novo') || isActiveSubstring('/dashboard/produtos/editar') ? 'bg-primary  rounded-md' : ''} hover:bg-primary p-2 rounded-md`}>
                 <FiShoppingCart className="text-xl" />
                 Produtos
               </Link>
-              <Link href="/dashboard/colecoes" className={`text-gray-500 flex items-center gap-2 p-2 ${isActive('/dashboard/colecoes') || isActive('/dashboard/colecoes/novo') ? 'bg-box  rounded-md' : ''} hover:bg-box p-2 rounded-md`}>
+              <Link href="/dashboard/colecoes" className={`text-gray-500 flex items-center gap-2 p-2 ${isActive('/dashboard/colecoes') || isActive('/dashboard/colecoes/novo') || isActiveSubstring('/dashboard/colecoes/editar') ? 'bg-box  rounded-md' : ''} hover:bg-box p-2 rounded-md`}>
                 <FiCornerDownRight className="text-xl" />
                 Coleções
               </Link>
