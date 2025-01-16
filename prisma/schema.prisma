@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String  @unique
+  password String
+  stores   Store[]
+}
+
+model Store {
+  id          Int          @id @default(autoincrement())
+  name        String
+  logo        String?
+  category    String
+  nameAccess  String
+  contact     String
+  visibility  Boolean
+  idUser      Int
+  idTemplate  Int?
+  collections Collection[]
+  products    Product[]
+  template    Template?     @relation(fields: [idTemplate], references: [id])
+  user        Usuario      @relation(fields: [idUser], references: [id])
+}
+
+model Template {
+  id     Int     @id @default(autoincrement())
+  name   String
+  type   String
+  pages  Page[]
+  stores  Store[]
+}
+
+model Page {
+  id         Int       @id @default(autoincrement())
+  idTemplate Int
+  template   Template  @relation(fields: [idTemplate], references: [id])
+  title      String 
+  logo                    String?
+  icon                    String?
+  bannerImage             String?
+  bannerTitle             String?
+  presentationImage       String?
+  presentationDescription String?
+  idCollection            Int? @unique
+  collection              Collection? @relation(fields: [idCollection], references: [id])
+  productsTitle           String?
+  facebookLink            String?
+  instagramLink           String?
+  youtubeLink             String?
+  address                 String?
+  contact                 String?
+  sections                Section[]
+}
+
+model Section {
+  id           Int     @id @default(autoincrement())
+  chave        String
+  titulo       String
+  visibilidade Boolean
+  idPage       Int
+  page         Page    @relation(fields: [idPage], references: [id])
+}
+
+model Collection {
+  id            Int       @id @default(autoincrement())
+  name          String
+  totalProducts Int
+  visibility    Boolean
+  idStore       Int
+  store         Store     @relation(fields: [idStore], references: [id])
+  products      Product[]
+  page          Page?
+}
+
+model Product {
+  id             Int         @id @default(autoincrement())
+  slug           String      @unique
+  name           String
+  visibility     Boolean
+  compare        Boolean
+  price          Float
+  pricePromotion Float?
+  description    String
+  imageURL       String
+  idStore        Int
+  idCollection   Int?
+  collection     Collection? @relation(fields: [idCollection], references: [id])
+  store          Store       @relation(fields: [idStore], references: [id])
+}

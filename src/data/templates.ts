@@ -8,6 +8,7 @@ export type Sections = {
   [key: string]: string | Section;
 };
 
+
 type Template = {
   name: string;
   type: string;
