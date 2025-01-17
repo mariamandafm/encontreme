@@ -3,33 +3,12 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 const prisma = new PrismaClient();
 
-// const usuario = await prisma.usuario.create({
-//     data: {
-//       name: 'Maria Silva',
-//       email: 'maria.silva@example.com',
-//       password: 'senha123',
-//     },
-//   });
-
-// const loja = await prisma.store.create({
-//     data: {
-//       name: 'Minha Loja',
-//       logo: 'https://meusite.com/logo.png',
-//       category: 'Eletrônicos',
-//       nameAccess: 'minha-loja',
-//       contact: 'contato@example.com',
-//       visibility: true,
-//       idUser: 1,
-//     },
-//   });
-
 type ErrorResponse = {
   error: string;
 };
 
 export default async function handler(req: any, res: any) {
   if (req.method === "GET") {
-    console.log("No GET");
     try {
       const templates = await prisma.template.findMany({
         include: {

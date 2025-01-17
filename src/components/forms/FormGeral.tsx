@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { FiUploadCloud, FiTrash2 } from "react-icons/fi";
 
-const FormGeral = () => {
+const FormGeral = ({ data, onChange }: { data: any; onChange: (values: any) => void }) => {
+  const [formValues, setFormValues] = useState(data || {});
+
+  useEffect(() => {
+    setFormValues(data || {}); // Atualiza os valores quando a prop `data` muda
+  }, [data]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    const updatedValues = { ...formValues, [name]: value };
+    setFormValues(updatedValues);
+    onChange(updatedValues); // Envia os valores atualizados para o componente pai
+  };
+
   return (
     <div className='flex flex-col gap-5'>
       <div>

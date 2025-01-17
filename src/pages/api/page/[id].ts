@@ -20,7 +20,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(404).json({ error: 'Página não encontrada.' });
       }
 
-      res.status(200).json(page);
+      const formattedPage = {
+        id: page?.id,
+        idTemplate: page?.idTemplate,
+        geral: {
+          logo: page?.logo,
+          icon: page?.icon,
+        },
+        banner: {
+          title: page?.title,
+          bannerImage: page?.bannerImage,
+          bannerTitle: page?.bannerTitle,
+        },
+        apresentacao: {
+          presentationImage: page?.presentationImage,
+          presentationDescription: page?.presentationDescription,
+        },
+        produtos: {
+          idCollection: page?.idCollection,
+          productsTitle: page?.productsTitle,
+        },
+        rodape: {
+          facebookLink: page?.facebookLink,
+          instagramLink: page?.instagramLink,
+          youtubeLink: page?.youtubeLink,
+          address: page?.address,
+          contact: page?.contact,
+        },
+      };
+
+      res.status(200).json(formattedPage);
     } catch (error) {
       res.status(500).json({ error: 'Erro ao buscar página.' + error });
     }
@@ -63,7 +92,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           contact,
           sections: {
             deleteMany: {},
-            create: sections.map((section: { chave: string, titulo: string, visibilidade: boolean }) => ({
+            create: (sections || []).map((section: { chave: string, titulo: string, visibilidade: boolean }) => ({
               chave: section.chave,
               titulo: section.titulo,
               visibilidade: section.visibilidade,
@@ -74,7 +103,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           sections: true,
         },
       });
-
       res.status(200).json(updatedPage);
     } catch (error) {
       res.status(500).json({ error: 'Erro ao atualizar página.' + error });

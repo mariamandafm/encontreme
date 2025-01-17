@@ -1,8 +1,28 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { FiUploadCloud, FiTrash2 } from "react-icons/fi";
 import Input from '../FormInput';
 
-const FormBanner = () => {
+const FormBanner = ({ data, onChange }: { data: any; onChange: (values: any) => void }) => {
+  const [formValues, setFormValues] = useState({
+    title: '',
+    bannerImage: '',
+    bannerTitle: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setFormValues((prevValues) => {
+      const updatedValues = { ...prevValues, [name]: value };
+      onChange(updatedValues);
+      return updatedValues; 
+    });
+  };
+  
+  useEffect(() => {
+    setFormValues(data || {});
+  }, [data]);
+
   return (
     <div className='flex flex-col gap-5'>
       <div>
@@ -31,7 +51,12 @@ const FormBanner = () => {
       <hr />
       <div>
         <h1 className='text-xl mb-1'>Configurações</h1>
-        <Input type="text" defaultValue="Cerâmica Artesanal"><span className="text-base">Título do Banner</span></Input>
+        <Input 
+          type="text" 
+          name="bannerTitle"
+          value={formValues.bannerTitle}
+          onChange={handleChange}
+        ><span className="text-base">Título do Banner</span></Input>
         <Input type="text" defaultValue="60%"><span className="text-base">Opacidade</span></Input>
       </div>
       <hr />

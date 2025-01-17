@@ -2,11 +2,20 @@ import React from 'react'
 import ProductCard from './ProductCard';
 import { ceramicProducts } from '@/data/products';
 
-const Products = () => {
+interface ProductsProps {
+  data: {
+    productsTitle: string;
+  };
+}
+
+const Products: React.FC<ProductsProps> = ({ data }) => {
+  if (!data) {
+    return <div>Data is undefined</div>;
+  }
   return (
     <div id="produtos" className="flex flex-col items-center mt-6 mb-12 font-sans">
       <div className="w-11/12">
-        <h1 className="text-2xl text-center">Produtos</h1>
+        <h1 className="text-2xl text-center">{data.productsTitle}</h1>
         <div className='grid md:grid-cols-4 mt-6 gap-5'>
           {ceramicProducts.map((product, index) => (
             <ProductCard

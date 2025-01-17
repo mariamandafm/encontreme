@@ -15,7 +15,6 @@ export default function ProductPage() {
   const [product, setProduct] = useState<CeramicProduct | null>(null);
 
   useEffect(() => {
-    console.log(id);
     if (id) {
       const foundProduct = ceramicProducts.find((prod) => prod.id === Number(id));
       setProduct(foundProduct || null);
