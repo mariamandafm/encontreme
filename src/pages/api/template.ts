@@ -3,11 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 const prisma = new PrismaClient();
 
-type ErrorResponse = {
-  error: string;
-};
-
-export default async function handler(req: any, res: any) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
     try {
       const templates = await prisma.template.findMany({
@@ -20,7 +16,7 @@ export default async function handler(req: any, res: any) {
         },
       });
       res.status(200).json(templates);
-    } catch (error) {
+    } catch {
       res.status(500).json({ error: "Erro ao buscar templates." });
     }
   } else if (req.method === "POST") {

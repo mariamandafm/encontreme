@@ -1,12 +1,12 @@
 "use client"
+import { Product } from '@prisma/client';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiChevronLeft, FiChevronRight, FiEdit } from 'react-icons/fi';
-import { ceramicProducts } from '@/data/products';
 
 export default function Produtos() {
-  const [produtos, setProdutos] = useState(ceramicProducts);
+  const [produtos, setProdutos] = useState<Product[]>([]);
   const [selecionados, setSelecionados] = useState<number[]>([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
   const [showModal, setShowModal] = useState(false);
@@ -20,6 +20,17 @@ export default function Produtos() {
   const produtosPagina = produtos.slice(indiceInicial, indiceFinal);
 
   const totalPaginas = Math.ceil(produtos.length / produtosPorPagina);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await fetch("/api/products");
+      const data = await response.json();
+      setProdutos(data);
+    };
+
+    fetchProducts();
+  }, []);
+
 
   const mudarPagina = (novaPagina: number) => {
     if (novaPagina > 0 && novaPagina <= totalPaginas) {

@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url      = "file:./dev.db"
 }
 
 model Usuario {
@@ -27,7 +27,7 @@ model Store {
   idTemplate  Int?
   collections Collection[]
   products    Product[]
-  template    Template?     @relation(fields: [idTemplate], references: [id])
+  template    Template?    @relation(fields: [idTemplate], references: [id])
   user        Usuario      @relation(fields: [idUser], references: [id])
 }
 
@@ -36,21 +36,21 @@ model Template {
   name   String
   type   String
   pages  Page[]
-  stores  Store[]
+  stores Store[]
 }
 
 model Page {
-  id         Int       @id @default(autoincrement())
-  idTemplate Int
-  template   Template  @relation(fields: [idTemplate], references: [id])
-  title      String 
+  id                      Int         @id @default(autoincrement())
+  idTemplate              Int
+  template                Template    @relation(fields: [idTemplate], references: [id])
+  title                   String
   logo                    String?
   icon                    String?
   bannerImage             String?
   bannerTitle             String?
   presentationImage       String?
   presentationDescription String?
-  idCollection            Int? @unique
+  idCollection            Int?        @unique
   collection              Collection? @relation(fields: [idCollection], references: [id])
   productsTitle           String?
   facebookLink            String?
