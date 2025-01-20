@@ -57,10 +57,24 @@ export default function Produtos() {
     );
   };
 
-  const removerSelecionados = () => {
-    setProdutos((prevProdutos) => prevProdutos.filter((produto) => !selecionados.includes(produto.id)));
-    setSelecionados([]); // Limpa a seleção
-    setShowModal(false); // Fecha o modal
+  const removerSelecionados = async () => {
+    try {
+      await Promise.all(
+        selecionados.map(async (id) => {
+          await fetch(`/api/products?id=${id}`, {
+            method: "DELETE",
+          });
+        })
+      );
+
+      setProdutos((prevProdutos) => prevProdutos.filter((produto) => !selecionados.includes(produto.id)));
+
+      setSelecionados([]);
+      setShowModal(false);
+    } catch (error) {
+      console.error("Erro ao remover produtos:", error);
+      alert("Erro ao remover produtos. Tente novamente.");
+    }
   };
 
   const todosSelecionados = produtosPagina.every((produto) => selecionados.includes(produto.id));
@@ -114,6 +128,7 @@ export default function Produtos() {
                   className="w-5 h-5 border-gray-600 accent-black border-2"
                   type="checkbox"
                   checked={isSelecionado}
+                  onClick={(e) => e.stopPropagation()}
                   onChange={() => toggleSelecionado(produto.id)}
                 />
                 <Image

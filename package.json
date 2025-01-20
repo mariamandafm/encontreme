@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "@prisma/client": "^6.2.1",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/formidable": "^3.4.5",
     "apexcharts": "^4.1.0",
+    "bcryptjs": "^2.4.3",
+    "formidable": "^3.5.2",
     "next": "15.0.3",
     "prisma": "^6.2.1",
     "react": "18.2.0",

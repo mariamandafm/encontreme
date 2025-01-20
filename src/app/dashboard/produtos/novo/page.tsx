@@ -1,61 +1,107 @@
 "use client";
 
-import React, { useState } from 'react';
-import Input from '../../../../components/FormInput';
-import Select from '../../../../components/SelectInput';
-import TextArea from '../../../../components/FormTextArea';
-import { FiArrowLeft } from 'react-icons/fi';
-import { useRouter } from 'next/navigation';
+import React, { useState } from "react";
+import Input from "../../../../components/FormInput";
+import Select from "../../../../components/SelectInput";
+import TextArea from "../../../../components/FormTextArea";
+import { FiArrowLeft, FiPlusCircle, FiXCircle } from "react-icons/fi";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { useAuth } from "../../../../contexts/AuthContext";
 
 const NovoProduto = () => {
+  const { userId } = useAuth();
   const [showModal, setShowModal] = useState(false);
   const [priceCompare, setPriceCompare] = useState(false);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [formData, setFormData] = useState({
     name: "",
-    slug: "",
     price: "",
     pricePromotion: "",
-    visibility: "Publicado",
+    visibility: "Rascunho",
     description: "",
     imageURL: "",
-    idStore: "", // ID da loja do usuário (ajuste conforme necessário)
     idCollection: "",
   });
 
   const router = useRouter();
 
-  // Função para atualizar os campos do formulário
+  const generateSlug = (name: string) => {
+    return name
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9 ]/g, "")
+      .trim()
+      .replace(/\s+/g, "-");
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Função para criar produto na API
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setImageFile(file);
+    setImagePreview(URL.createObjectURL(file));
+  };
+
+
   const handleSubmit = async () => {
-    if (!formData.name || !formData.slug || !formData.price || !formData.imageURL || !formData.idStore) {
+    if (!formData.name || !formData.price) {
       alert("Preencha todos os campos obrigatórios.");
       return;
     }
 
+    if (!userId) {
+      alert("Usuário não autenticado. Faça login para continuar.");
+      return;
+    }
+
     try {
+      let uploadedImageUrl = formData.imageURL;
+
+      if (imageFile) {
+        const formDataUpload = new FormData();
+        formDataUpload.append("image", imageFile);
+
+        const uploadResponse = await fetch("/api/upload", {
+          method: "POST",
+          body: formDataUpload,
+        });
+
+        const uploadData = await uploadResponse.json();
+        uploadedImageUrl = uploadData.imageUrl;
+      }
+
       const response = await fetch("/api/products", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...formData,
+          idUser: userId,
+          compare: priceCompare,
+          name: formData.name,
+          slug: generateSlug(formData.name),
           price: parseFloat(formData.price),
           pricePromotion: formData.pricePromotion ? parseFloat(formData.pricePromotion) : null,
           visibility: formData.visibility === "Publicado",
-          idStore: parseInt(formData.idStore),
+          description: formData.description,
+          imageURL: uploadedImageUrl,
           idCollection: formData.idCollection ? parseInt(formData.idCollection) : null,
         }),
       });
+
+      const data = await response.json();
 
       if (response.ok) {
         alert("Produto criado com sucesso!");
         router.push("/dashboard/produtos");
       } else {
-        alert("Erro ao criar produto.");
+        alert(data.error);
       }
     } catch (error) {
       console.error("Erro ao enviar requisição:", error);
@@ -100,16 +146,29 @@ const NovoProduto = () => {
               <Input name="name" value={formData.name} onChange={handleChange} placeholder="Digite o nome do produto">
                 Nome do Produto
               </Input>
-              <Input name="slug" value={formData.slug} onChange={handleChange} placeholder="Digite um slug único">
-                Slug do Produto
-              </Input>
 
               <p className="font-medium mt-6">Mídia do Produto</p>
-              <div className="mt-2 p-4 bg-box h-32 w-full rounded-md">
-                <Input name="imageURL" value={formData.imageURL} onChange={handleChange} placeholder="URL da Imagem">
-                  URL da Imagem
-                </Input>
-              </div>
+
+              <label className="mt-2 p-4 bg-box h-32 w-full rounded-md flex items-center justify-center cursor-pointer">
+                <input type="file" className="hidden" onChange={handleImageUpload} />
+
+                {imagePreview ? (
+                  <div className="relative">
+                    <Image width={100} height={100} src={imagePreview} alt="Prévia da Imagem" className="h-28 w-28 object-cover rounded-lg" />
+                    <FiXCircle
+                      className="absolute -top-2 -right-2 cursor-pointer text-red-600"
+                      size={24}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setImagePreview(null);
+                        setImageFile(null);
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <FiPlusCircle size={28} stroke="#E3E3E3" />
+                )}
+              </label>
 
               <div className="mt-6">
                 <TextArea name="description" value={formData.description} onChange={handleChange} placeholder="Digite a descrição do produto">
@@ -121,7 +180,7 @@ const NovoProduto = () => {
 
           <div className="md:col-span-2 bg-white rounded-3xl p-7">
             <Select name="visibility" value={formData.visibility} onChange={handleChange} title="Visibilidade">
-              <option value="Rascunho">Rascunho</option>
+              <option value="Rascunho" defaultValue={"Rascunho"}>Rascunho</option>
               <option value="Publicado">Publicado</option>
             </Select>
 
@@ -158,11 +217,6 @@ const NovoProduto = () => {
               </Input>
             </div>
 
-            <div className="mt-6">
-              <Input name="idStore" value={formData.idStore} onChange={handleChange} placeholder="Digite o ID da loja">
-                ID da Loja
-              </Input>
-            </div>
           </div>
         </div>
       </div>

@@ -6,12 +6,19 @@ const prisma = new PrismaClient();
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     switch (req.method) {
-      case "GET":
-        const products = await prisma.product.findMany();
-        res.status(200).json(products);
-        break;
+      case "GET": {
+        const products = await prisma.product.findMany({
+          include: { store: true }, 
+        });
+        return res.status(200).json(products);
+      }
 
-      case "POST":
+      case "POST": {
+        console.log(req.body);
+        if (!req.body || typeof req.body !== "object") {
+          return res.status(400).json({ error: "Dados inválidos na requisição." });
+        }
+
         const {
           slug,
           name,
@@ -21,67 +28,76 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           pricePromotion,
           description,
           imageURL,
-          idStore,
+          idUser, 
           idCollection,
         } = req.body;
 
-        if (!slug || !name || !price || !imageURL || !idStore) {
-          return res.status(400).json({ error: "Campos obrigatórios faltando" });
+        if (!idUser) {
+          return res.status(400).json({ error: "ID do usuário é obrigatório." });
+        }
+
+        const store = await prisma.store.findFirst({
+          where: { idUser: Number(idUser) },
+        });
+
+        if (!store) {
+          return res.status(404).json({ error: "Nenhuma loja encontrada para este usuário." });
         }
 
         const newProduct = await prisma.product.create({
           data: {
             slug,
             name,
-            visibility: visibility ?? true,
-            compare: compare ?? false,
-            price,
-            pricePromotion,
+            visibility: Boolean(visibility),
+            compare: Boolean(compare),
+            price: parseFloat(price),
+            pricePromotion: pricePromotion ? parseFloat(pricePromotion) : null,
             description,
             imageURL,
-            idStore,
-            idCollection,
+            idStore: store.id,
+            idCollection: idCollection ? Number(idCollection) : null,
           },
         });
-        res.status(201).json(newProduct);
-        break;
 
-      case "PUT":
+        return res.status(201).json(newProduct);
+      }
+
+      case "PUT": {
         const { id } = req.query;
-        const updateData = req.body;
-
-        if (!id || typeof id !== "string") {
+        if (!id || isNaN(Number(id))) {
           return res.status(400).json({ error: "ID do produto inválido" });
         }
 
+        const updateData = req.body;
+
         const updatedProduct = await prisma.product.update({
-          where: { id: parseInt(id) },
+          where: { id: Number(id) },
           data: updateData,
         });
 
-        res.status(200).json(updatedProduct);
-        break;
+        return res.status(200).json(updatedProduct);
+      }
 
-      case "DELETE":
+      case "DELETE": {
         const { id: deleteId } = req.query;
 
-        if (!deleteId || typeof deleteId !== "string") {
+        if (!deleteId || isNaN(Number(deleteId))) {
           return res.status(400).json({ error: "ID do produto inválido" });
         }
 
         await prisma.product.delete({
-          where: { id: parseInt(deleteId) },
+          where: { id: Number(deleteId) },
         });
 
-        res.status(204).end();
-        break;
+        return res.status(204).end();
+      }
 
       default:
         res.setHeader("Allow", ["GET", "POST", "PUT", "DELETE"]);
-        res.status(405).end(`Método ${req.method} não permitido`);
+        return res.status(405).end(`Método ${req.method} não permitido`);
     }
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Erro interno do servidor" });
+    console.error("Erro interno do servidor:", error);
+    return res.status(500).json({ error: "Erro interno do servidor" });
   }
 }
